@@ -17,7 +17,6 @@ export default function Home() {
             setMessage('No WebApp');
             return;
         }
-        window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
     }, []);
 
