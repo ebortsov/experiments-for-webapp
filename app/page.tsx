@@ -1,28 +1,18 @@
 'use client';
-import { useEffect } from 'react';
-import { useState } from 'react';
+
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Home() {
-    const [message, setMessage] = useState('Normal');
     useEffect(() => {
-        if (typeof window === 'undefined') {
-            setMessage('Undefined');
-            return;
-        }
-        if (!window.Telegram) {
-            setMessage('No Telegram');
-            return;
-        }
-        if (!window.Telegram.WebApp) {
-            setMessage('No WebApp');
-            return;
-        }
-        window.Telegram.WebApp.expand();
+        let tg = window.Telegram.WebApp; 
+        tg.expand(); //расширяем на все окно
     }, []);
+
 
     return (
         <main>
-            <h1>{message}</h1>
+            <h1>Fuck telegram</h1>
         </main>
     );
 }
