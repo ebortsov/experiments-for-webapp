@@ -1,12 +1,20 @@
 'use client';
 
 import { useEffect } from "react";
-import { useState } from "react";
 
 export default function Home() {
     useEffect(() => {
-        let tg = window.Telegram.WebApp; 
-        tg.expand(); //расширяем на все окно
+        if (typeof window === 'undefined') {
+            return;
+        }
+        if (!window.Telegram) {
+            return;
+        }
+        if (!window.Telegram.WebApp) {
+            return;
+        }
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
     }, []);
 
 
