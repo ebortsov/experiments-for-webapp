@@ -3,18 +3,18 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 export default function Home() {
-    const [message, setMessage] = useState("Normal");
+    const [message, setMessage] = useState('Normal');
     useEffect(() => {
         if (typeof window === 'undefined') {
-            setMessage("Undefined");
+            setMessage('Undefined');
             return;
         }
         if (!window.Telegram) {
-            setMessage("No Telegram");
+            setMessage('No Telegram');
             return;
         }
         if (!window.Telegram.WebApp) {
-            setMessage("No WebApp");
+            setMessage('No WebApp');
             return;
         }
         window.Telegram.WebApp.ready();
