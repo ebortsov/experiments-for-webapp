@@ -1,20 +1,29 @@
-"use client"
+'use client';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
-  useEffect(() => {
-    // Check if the script is loaded and the Telegram object is available
-    if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
-      window.Telegram.WebApp.ready();
-      window.Telegram.WebApp.expand();
-    } else {
-        console.log("Well that sucks");
-    }
-  }, []);
+    const [message, setMessage] = useState("Normal");
+    useEffect(() => {
+        if (typeof window === 'undefined') {
+            setMessage("Undefined");
+            return;
+        }
+        if (!window.Telegram) {
+            setMessage("No Telegram");
+            return;
+        }
+        if (!window.Telegram.WebApp) {
+            setMessage("No WebApp");
+            return;
+        }
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+    }, []);
 
-  return (
-    <main>
-      <h1>This page is used for testing telegram bot</h1>
-    </main>
-  );
+    return (
+        <main>
+            <h1>{message}</h1>
+        </main>
+    );
 }
